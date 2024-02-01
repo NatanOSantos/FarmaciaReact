@@ -1,27 +1,43 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
-import Contact from './pages/contact/Contact';
-import Footer from './components/footer/Footer'
-import NavBar from './components/navbar/Navbar';
+import './App.css';
+
+import Navbar from './components/navbar/Navbar';
+import Footer from './components/footer/Footer';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/home/Home';
 
-function App() {
+import { ToastContainer } from 'react-toastify';
 
+
+import DeletarCategoria from './components/categorias/deletarCategoria/DeletarCategoria';
+import FormularioCategoria from './components/categorias/formularioCategoria/FormularioCategoria';
+import ListarCategorias from './components/categorias/listarCategorias/ListarCategorias';
+import Contact from './pages/contact/Contact';
+
+
+
+function App() {
   return (
     <>
-        <BrowserRouter>
-        <NavBar />
-          <div className="min-h-[80vh]">
-            <Routes>
-                <Route path="/" element={<Contact />} />
-                <Route path='/home' element={<Home />} />
-                <Route path="/contact" element={<Contact />} />
-            </Routes>
-          </div>
-          <Footer />
-        </BrowserRouter>
+      <BrowserRouter>
+        <Navbar />
+        <ToastContainer />
+        <div className="min-h-[80vh]">
+          <Routes>
+            <Route path="/suaFarma/" element={<Home />} />
+            <Route path="/suaFarma/home" element={<Home />} />
+            <Route path="/suaFarma/contact" element={<Contact />} />
+            <Route path="/suaFarma/categorias" element={<ListarCategorias />} />
+            <Route path="/suaFarma/cadastroCategoria" element={<FormularioCategoria />} />
+            <Route
+              path="/suaFarma/editarCategoria/:id"
+              element={<FormularioCategoria />}
+            />
+            <Route path="/suaFarma/deletarCategoria/:id" element={<DeletarCategoria />} />
+          </Routes>
+        </div>
+        <Footer />
+      </BrowserRouter>
     </>
-  )
+  );
 }
-
-export default App
+export default App;
